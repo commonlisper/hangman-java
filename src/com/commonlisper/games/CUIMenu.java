@@ -77,6 +77,7 @@ public class CUIMenu {
         System.out.println("`" + roundInfo.getUserName() + "`");
         System.out.println("The target word => " + targetWord);
         System.out.println("Your word       => " + roundInfo.getGuessedWord());
+        System.out.println("Number of attempts used => " + roundInfo.getAttemptsCount());
         System.out.println("Letters you've entered => " + roundInfo.getEnteredChars());
         System.out.println("Letters you've guessed => " + roundInfo.getGuessedChars());
         System.out.println(placeholder);
