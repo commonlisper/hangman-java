@@ -16,9 +16,9 @@ public class CUIMenu {
     }
 
     private <T> T getUserInput(String message,
-                               String errorValidateMessage,
-                               Function<String, T> parser,
-                               Predicate<T> validator) {
+            String errorValidateMessage,
+            Function<String, T> parser,
+            Predicate<T> validator) {
         System.out.print(message + " ");
 
         while (true) {
@@ -77,7 +77,7 @@ public class CUIMenu {
         System.out.println("`" + roundInfo.getUserName() + "`");
         System.out.println("The target word => " + targetWord);
         System.out.println("Your word       => " + roundInfo.getGuessedWord());
-        System.out.println("Number of attempts used => " + roundInfo.getAttemptsCount());
+        System.out.println("Number of attempts used => " + (roundInfo.getAttemptsCount() - 1));
         System.out.println("Letters you've entered => " + roundInfo.getEnteredChars());
         System.out.println("Letters you've guessed => " + roundInfo.getGuessedChars());
         System.out.println(placeholder);

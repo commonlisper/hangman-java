@@ -38,21 +38,18 @@ class Game {
         boolean isGameOver = false;
         while (!isGameOver) {
             menu.showCurrentGameStatus(player.makeGameRoundInfo());
-
             newGameRound(player);
-
-            player.setGuessedWord(Words.makeMaskedWord(word, player.getEnteredChars()));
 
             isGameOver = isGuessedWord(word, player.getGuessedWord()) || isAttemptsEnded(player.getAttemptsCount());
         }
 
         if (isAttemptsEnded(player.getAttemptsCount())) {
             menu.showLostMessage();
-            menu.showGameStatistic(word, player.makeGameRoundInfo());
         } else if (isGuessedWord(word, player.getGuessedWord())) {
             menu.showWinMessage();
-            menu.showGameStatistic(word, player.makeGameRoundInfo());
         }
+
+        menu.showGameStatistic(word, player.makeGameRoundInfo());
     }
 
     private void newGameRound(Player player) {
@@ -61,17 +58,19 @@ class Game {
 
             if (player.hasEnteredBefore(userChar)) {
                 menu.showHasEnteredBeforeMessage(userChar);
-            } else {
-                player.addEnteredChar(userChar);
+                continue;
+            }
 
-                if (isGuessedChar(word, userChar)) {
-                    player.addGuessedChar(userChar);
-                } else {
-                    player.incrementAttempts();
-                }
+            player.addEnteredChar(userChar);
 
+            if (isGuessedChar(word, userChar)) {
+                player.addGuessedChar(userChar);
+                player.setGuessedWord(Words.makeMaskedWord(word, player.getEnteredChars()));
                 break;
             }
+
+            player.incrementAttempts();
+            break;
         }
     }
 
