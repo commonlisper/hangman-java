@@ -15,7 +15,7 @@ public class CUIMenu {
         this.scanner = scanner;
     }
 
-    private <T> T getUserInput(String message,
+    private <T> T processUserInput(String message,
             String errorValidateMessage,
             Function<String, T> parser,
             Predicate<T> validator) {
@@ -42,21 +42,21 @@ public class CUIMenu {
     public char requestNewGameOrExit() {
         final Set<Character> validOptions = Set.of('y', 'n');
 
-        return getUserInput("Do you want to game or to exit? (y/n)",
+        return processUserInput("Do you want to game or to exit? (y/n)",
                 "Must be a character `y` or `n`",
                 input -> input.toLowerCase().charAt(0),
                 validOptions::contains);
     }
 
     public String requestUserName() {
-        return getUserInput("Please, enter your name:",
+        return processUserInput("Please, enter your name:",
                 "Name cannot be blank",
                 input -> input,
                 input -> !input.isBlank());
     }
 
     public char requestUserChar() {
-        return getUserInput("Please, enter your char:",
+        return processUserInput("Please, enter your char:",
                 "Not a char, re-enter",
                 input -> input.charAt(0),
                 Character::isLetter);

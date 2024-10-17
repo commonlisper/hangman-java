@@ -43,7 +43,7 @@ public class Player {
     }
 
     public List<Character> getEnteredChars() {
-        return enteredChars;
+        return new ArrayList<>(enteredChars);
     }
 
     public int getAttemptsCount() {

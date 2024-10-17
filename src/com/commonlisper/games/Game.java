@@ -21,7 +21,7 @@ class Game {
             char userInput = menu.requestNewGameOrExit();
 
             if (userInput == 'y') {
-                gameLoop();
+                startGameLoop();
             } else if (userInput == 'n') {
                 menu.showGoodbyeMessage();
                 break;
@@ -29,7 +29,7 @@ class Game {
         }
     }
 
-    private void gameLoop() {
+    private void startGameLoop() {
         word = wordProvider.getRandomWord();
         menu.showStartGameMenu();
         Player player = new Player(menu.requestUserName());
